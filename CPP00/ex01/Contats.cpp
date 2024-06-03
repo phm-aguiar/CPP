@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 18:04:49 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/05/31 19:04:17 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/06/01 21:15:55 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Contats::Contats()
 Contats::~Contats()
 {
 }
-Contats &Contats::operator=(Contats &backup)
+Contats &Contats::operator=(const Contats &backup)
 {
 	if (this != &backup)
 	{
@@ -30,27 +30,27 @@ Contats &Contats::operator=(Contats &backup)
 	}
 	return (*this);
 }
-Contats::Contats(Contats &copia)
+Contats::Contats(const Contats &copia)
 {
 	*this = copia;
 }
 
-void Contats::setNome(std::string nome)
+void Contats::setNome(const std::string nome)
 {
 	this->nome = nome;
 }
 
-void Contats::setSobrenome(std::string sobrenome)
+void Contats::setSobrenome(const std::string sobrenome)
 {
 	this->sobrenome = sobrenome;
 }
 
-void Contats::setNumCont(std::string numCont)
+void Contats::setNumCont(long numCont)
 {
 	this->numCont = numCont;
 }
 
-void Contats::setSecret(std::string secret)
+void Contats::setSecret(const std::string secret)
 {
 	this->secret = secret;
 }
