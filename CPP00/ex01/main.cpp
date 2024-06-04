@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:53:22 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/06/01 21:19:38 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/06/03 17:48:53 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,24 @@ int	main(void)
 	Phonebook	phonebook;
 
 	std::string input;
-	while (1)
+	std::string newInput = "";
+	while (true)
 	{
 		std::cout << GREEN << "Comandos disponíveis: ADD, SEARCH, EXIT" << RESET << std::endl;
 		std::cout << "Digite um comando: ";
 		std::getline(std::cin, input);
 		if (std::cin.eof())
 		{
-			std::cout << "\nEOF recebido, saindo do programa." << std::endl;
+			std::cout << RED << "\nEOF recebido, saindo do programa." << RESET << std::endl;
 			break ;
 		}
-		input = ftToUpper(input);
-		if (input == "ADD")
+		newInput = ftToUpper(input);
+		if (newInput == "ADD")
 			phonebook.add();
-		else if (input == "SEARCH")
+		else if (newInput == "SEARCH")
 			phonebook.search();
-		else if (input == "EXIT")
+		else if (newInput == "EXIT")
 			break ;
-		std::cin.clear();
 	}
 	return (0);
 }
