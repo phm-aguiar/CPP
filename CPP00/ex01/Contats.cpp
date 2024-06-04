@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 18:04:49 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/06/01 21:15:55 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/06/03 19:54:55 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Contats::Contats()
 {
-	this->nome = this->sobrenome = this->numCont = this->secret = "";
+	this->_nome = this->_sobrenome = this->_numCont = this->_secret = this->_nickname = "";
 }
 Contats::~Contats()
 {
@@ -23,10 +23,11 @@ Contats &Contats::operator=(const Contats &backup)
 {
 	if (this != &backup)
 	{
-		this->nome = backup.nome;
-		this->sobrenome = backup.sobrenome;
-		this->numCont = backup.numCont;
-		this->secret = backup.secret;
+		this->_nome = backup._nome;
+		this->_sobrenome = backup._sobrenome;
+		this->_numCont = backup._numCont;
+		this->_secret = backup._secret;
+		this->_nickname = backup._nickname;
 	}
 	return (*this);
 }
@@ -37,40 +38,74 @@ Contats::Contats(const Contats &copia)
 
 void Contats::setNome(const std::string nome)
 {
-	this->nome = nome;
+	this->_nome = nome;
 }
 
 void Contats::setSobrenome(const std::string sobrenome)
 {
-	this->sobrenome = sobrenome;
+	this->_sobrenome = sobrenome;
 }
 
-void Contats::setNumCont(long numCont)
+void Contats::setNickname(const std::string nickname)
 {
-	this->numCont = numCont;
+	this->_nickname = nickname;
+}
+
+void Contats::setNumCont(const std::string numCont)
+{
+	this->_numCont = numCont;
 }
 
 void Contats::setSecret(const std::string secret)
 {
-	this->secret = secret;
+	this->_secret = secret;
 }
+
+// void Contats::setIndex(int index)
+// {
+// 	this->_index = index;
+// }
 
 std::string Contats::getNome()
 {
-	return (this->nome);
+	return (this->_nome);
 }
 
 std::string Contats::getSobrenome()
 {
-	return (this->sobrenome);
+	return (this->_sobrenome);
 }
 
 std::string Contats::getNumCont()
 {
-	return (this->numCont);
+	return (this->_numCont);
+}
+
+std::string Contats::getNickname()
+{
+	return (this->_nickname);
 }
 
 std::string Contats::getSecret()
 {
-	return (this->secret);
+	return (this->_secret);
+}
+
+void Contats::printCont(size_t index)
+{
+	if (this->_nome.empty())
+		return ;
+	std::cout << std::setw(10) << index << "|";
+	if (this->_nome.length() > 10)
+		std::cout << std::setw(10) << this->_nome.substr(0, 9) + "." << "|";
+	else
+		std::cout << std::setw(10) << this->_nome << "|";
+	if (this->_sobrenome.length() > 10)
+		std::cout << std::setw(10) << this->_sobrenome.substr(0, 9) + "." << "|";
+	else
+		std::cout << std::setw(10) << this->_sobrenome << "|";
+	if (this->_nickname.length() > 10)
+		std::cout << std::setw(10) << this->_nickname.substr(0, 9) + "." << std::endl;
+	else
+		std::cout << std::setw(10) << this->_nickname << std::endl;
 }
