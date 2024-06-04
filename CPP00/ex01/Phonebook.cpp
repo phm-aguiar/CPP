@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:37:27 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/06/01 21:30:16 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/06/03 18:03:17 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ void	ft_error(const std::string msg)
 Phonebook::Phonebook()
 {
 	for (int i = 0; i < 8; i++)
-	{
 		this->_contatos[i] = Contats();
-	}
 }
 
 Phonebook::~Phonebook()
@@ -32,10 +30,8 @@ Phonebook::~Phonebook()
 Phonebook &Phonebook::operator=(const Phonebook &backup)
 {
 	if (this != &backup)
-	{
 		for (int i = 0; i < 8; i++)
 			this->_contatos[i] = backup._contatos[i];
-	}
 	return (*this);
 }
 
@@ -44,59 +40,98 @@ Phonebook::Phonebook(const Phonebook &copia)
 	*this = copia;
 }
 
+bool Phonebook::isNumber(std::string numCont)
+{
+	for (size_t i = 0; i < numCont.length(); i++)
+		if (!isdigit(numCont[i]))
+			return (false);
+	return (true);
+}
+
+static void	set_Contats(Contats *contato, std::string nome,
+		std::string sobrenome, std::string nickname, std::string numCont,
+		std::string secret)
+{
+	contato->setNome(nome);
+	contato->setSobrenome(sobrenome);
+	contato->setNickname(nickname);
+	contato->setNumCont(numCont);
+	contato->setSecret(secret);
+	std::system("clear");
+}
+
+static std::string add_str(std::string var, std::string out, std::string error)
+{
+	while (var.empty())
+	{
+		std::cout << GREEN << out << RESET;
+		std::getline(std::cin, var);
+		if (var.empty())
+			ft_error(error);
+	}
+	return (var);
+}
+
 void Phonebook::add()
 {
 	static int	index = 0;
-	long			numCont;
-
-	if (index == 8)
+	
+	std::string nome, sobrenome, nick, secret, numCont;
+	if (!std::system("clear") && index == 8)
 		index = 0;
-	std::string nome, sobrenome, secret = "";
-	numCont = 0;
-	while (nome.empty())
+	nome = add_str(nome, "add first name: ", "Name cannot be empty");
+	sobrenome = add_str(sobrenome, "add last name: ", "Last name cannot be empty");
+	nick = add_str(nick, "add nickname: ", "Nickname cannot be empty");
+	while (numCont.empty())
 	{
-		std::cout << "Digite o nome: ";
-		std::getline(std::cin, nome);
-		if (nome.empty() || std::cin.eof())
-			ft_error("Nome não pode ser vazio");
-	}
-	while (sobrenome.empty())
-	{
-		std::cout << "Digite o sobrenome: ";
-		std::getline(std::cin, sobrenome);
-		if (sobrenome.empty() || std::cin.eof())
-			ft_error("Sobrenome não pode ser vazio");
-	}
-	while (true)
-	{
-		std::cout << "Digite o numero de contato: ";
-		std::cin >> numCont;
-		if (std::cin.fail() || std::cin.eof())
+		std::cout << "Enter contact number: ";
+		std::getline(std::cin, numCont);
+		if (!this->isNumber(numCont))
 		{
-			std::cin.clear();
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			ft_error("Numero de contato invalido");
+			std::cout << RED << "Invalid contact number" << RESET << std::endl;
+			numCont.clear();
+			continue ;
 		}
-		else
-		{
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			break ;
-		}
+		if (numCont.empty())
+			ft_error("contact number field cannot be empty");
 	}
-	while (secret == "")
-	{
-		std::cout << "Digite o segredo: ";
-		std::getline(std::cin, secret);
-		if (secret == "" || std::cin.eof())
-			ft_error("Segredo não pode ser vazio");
-	}
-	_contatos[index].setNome(nome);
-	_contatos[index].setSobrenome(sobrenome);
-	_contatos[index].setNumCont(numCont);
-	_contatos[index].setSecret(secret);
+	secret = add_str(secret, "Enter a dark secret: ", "the dark secret cannot be empty");
+	set_Contats(&this->_contatos[index], nome, sobrenome, nick, numCont, secret);
 	index++;
+}
+
+bool inRange0to7(std::string index)
+{
+	if (index.length() > 1 || index[0] < '0' || index[0] > '7')
+	{
+		ft_error("Invalid index");
+		index.clear();
+		return (false);
+	}
+	return (true);
 }
 
 void Phonebook::search()
 {
+	std::string index;
+	std::cout << "     index|first name| last name|  nickname" << std::endl;
+	for (int i = 0; i < 8; i++)
+		this->_contatos[i].printCont(i);
+	while (index.empty())
+	{
+		index = add_str(index, "Enter the index of the contact: ", "Index cannot be empty");
+		if(this->isNumber(index))
+			if (!inRange0to7(index))
+				index.clear();	
+	}
+	if (this->_contatos[std::atoi(index.c_str())].getNome().empty())
+	{
+		ft_error("Contact not found");
+		return ;
+	}
+	std::cout << "First name: " << this->_contatos[std::atoi(index.c_str())].getNome() << std::endl;
+	std::cout << "Last name: " << this->_contatos[std::atoi(index.c_str())].getSobrenome() << std::endl;
+	std::cout << "Nickname: " << this->_contatos[std::atoi(index.c_str())].getNickname() << std::endl;
+	std::cout << "Contact number: " << this->_contatos[std::atoi(index.c_str())].getNumCont() << std::endl;
+	std::cout << "Dark secret: " << this->_contatos[std::atoi(index.c_str())].getSecret() << std::endl;
 }
