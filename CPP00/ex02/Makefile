@@ -26,8 +26,8 @@ CFLAGS	=	-Wall -Werror -Wextra -std=c++98 -I.
 RM		=	rm -rf
 
 # Dir and file names
-NAME	=	tests
-SRCS	=	Account.cpp tests.cpp
+NAME	=	Account
+SRCS	=	tests.cpp Account.cpp
 OBJS	=	$(SRCS:.cpp=.o)
 INC		=	$(wildcard *.hpp)
 
