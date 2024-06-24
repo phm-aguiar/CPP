@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 18:04:49 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/06/03 19:54:55 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/06/04 16:15:56 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,6 @@ void Contats::setSecret(const std::string secret)
 	this->_secret = secret;
 }
 
-// void Contats::setIndex(int index)
-// {
-// 	this->_index = index;
-// }
 
 std::string Contats::getNome()
 {

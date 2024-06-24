@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:37:27 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/06/03 18:03:17 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/06/04 17:02:03 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static std::string add_str(std::string var, std::string out, std::string error)
 void Phonebook::add()
 {
 	static int	index = 0;
-	
+
 	std::string nome, sobrenome, nick, secret, numCont;
 	if (!std::system("clear") && index == 8)
 		index = 0;
@@ -95,17 +95,24 @@ void Phonebook::add()
 		if (numCont.empty())
 			ft_error("contact number field cannot be empty");
 	}
-	secret = add_str(secret, "Enter a dark secret: ", "the dark secret cannot be empty");
+	secret = add_str(secret, "Enter a darkest secret: ", "the darkest secret cannot be empty");
 	set_Contats(&this->_contatos[index], nome, sobrenome, nick, numCont, secret);
 	index++;
 }
 
-bool inRange0to7(std::string index)
+bool	inRange0to7(std::string index)
 {
-	if (index.length() > 1 || index[0] < '0' || index[0] > '7')
+	char	num;
+
+	num = index[0];
+	if (index.length() > 1)
 	{
 		ft_error("Invalid index");
-		index.clear();
+		return (false);
+	}
+	if (num < '0' || num > '7')
+	{
+		ft_error("Invalid index");
 		return (false);
 	}
 	return (true);
@@ -117,12 +124,22 @@ void Phonebook::search()
 	std::cout << "     index|first name| last name|  nickname" << std::endl;
 	for (int i = 0; i < 8; i++)
 		this->_contatos[i].printCont(i);
+	if (this->_contatos[0].getNome().empty())
+	{
+		ft_error("No contacts cadastrated");
+		return ;
+	}
 	while (index.empty())
 	{
-		index = add_str(index, "Enter the index of the contact: ", "Index cannot be empty");
-		if(this->isNumber(index))
-			if (!inRange0to7(index))
-				index.clear();	
+		index = add_str(index, "Enter the index of the contact [0 - 7]: ", "Index cannot be empty");
+		if (!this->isNumber(index))
+		{
+			ft_error("Invalid index");
+			index = "";
+			continue ;
+		}
+		if (!inRange0to7(index))
+			index = "";
 	}
 	if (this->_contatos[std::atoi(index.c_str())].getNome().empty())
 	{
