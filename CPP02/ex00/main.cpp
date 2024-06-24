@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/05 19:02:22 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/06/09 16:26:02 by phenriq2         ###   ########.fr       */
+/*   Created: 2024/06/18 15:18:00 by phenriq2          #+#    #+#             */
+/*   Updated: 2024/06/18 15:18:13 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMANA_HPP_
-# define HUMANA_HPP_
-# include "Weapon.hpp"
-# include <iostream>
-# include <string>
-class HumanA
-{
-  public:
-	HumanA(std::string name, Weapon &weapon);
-	HumanA(const HumanA &other);
-	HumanA &operator=(const HumanA &rhs);
-	~HumanA();
-	void attack() const;
+#include "Fixed.hpp"
+#include <iostream>
 
-  private:
-	std::string _name;
-	Weapon &_weapon;
-};
-
-#endif // HUMANA_HPP_
+int main( void ) {
+Fixed a;
+Fixed b( a );
+Fixed c;
+c = b;
+std::cout << a.getRawBits() << std::endl;
+std::cout << b.getRawBits() << std::endl;
+std::cout << c.getRawBits() << std::endl;
+return 0;
+}

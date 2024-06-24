@@ -26,8 +26,8 @@ CFLAGS	=	-Wall -Werror -Wextra -std=c++98 -I.
 RM		=	rm -rf
 
 # Dir and file names
-NAME	=	human
-SRCS	=	main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
+NAME	=	fixed
+SRCS	=	main.cpp Fixed.cpp
 OBJS	=	$(SRCS:.cpp=.o)
 INC		=	$(wildcard *.hpp)
 

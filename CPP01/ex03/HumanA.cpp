@@ -6,38 +6,27 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 19:02:27 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/06/07 19:47:34 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/06/09 16:27:04 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanA.hpp"
 
-// Default constructor
-HumanA::HumanA()
-{
-	return ;
-}
+HumanA::HumanA(std::string name, Weapon &weapon) : _name(name), _weapon(weapon) {}
 
-// Copy constructor
-HumanA::HumanA(const HumanA &other)
-{
-	*this = other;
-	return ;
-}
+HumanA::HumanA(const HumanA &other) : _name(other._name), _weapon(other._weapon) {}
 
-// Copy assignment overload
 HumanA &HumanA::operator=(const HumanA &rhs)
 {
 	if (this != &rhs)
-	{
 		this->_name = rhs._name;
-    this->_weapon = rhs._weapon;
-	}
 	return (*this);
 }
 
-// Default destructor
-HumanA::~HumanA()
+
+HumanA::~HumanA() {}
+
+void HumanA::attack() const
 {
-	return ;
+	std::cout << this->_name << " attacks with his " << this->_weapon.getType() << std::endl;
 }
