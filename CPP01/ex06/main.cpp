@@ -5,25 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/05 18:41:23 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/06/10 12:13:18 by phenriq2         ###   ########.fr       */
+/*   Created: 2024/06/09 19:16:23 by phenriq2          #+#    #+#             */
+/*   Updated: 2024/06/10 16:14:27 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include "Harl.hpp"
 
-int	main(void)
-{
-	std::string string = "HI THIS IS BRAIN";
-	std::string *stringPTR = &string;
-	std::string &stringREF = string;
+int main(int argc, char **argv) {
+	Harl harl;
 
-	std::cout << "Address of the string: " << &string << std::endl;
-	std::cout << "Address of the stringPTR: " << stringPTR << std::endl;
-	std::cout << "Address of the stringREF: " << &stringREF << std::endl;
-	std::cout << "String: " << string << std::endl;
-	std::cout << "StringPTR: " << *stringPTR << std::endl;
-	std::cout << "StringREF: " << stringREF << std::endl;
-
-	return (0);
+	if (argc == 2)
+		harl.complain(argv[1]);
+	else
+		harl.complain("invalid");
+	return 0;
 }

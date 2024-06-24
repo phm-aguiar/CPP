@@ -6,15 +6,15 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 19:02:08 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/06/09 16:31:51 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/06/10 11:10:02 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanA.hpp"
+#include "HumanB.hpp"
 #include "Weapon.hpp"
-#include <HumanB.hpp>
 
-int	main(void)
+int main()
 {
 	{
 		Weapon club = Weapon("crude spiked club");
@@ -26,8 +26,8 @@ int	main(void)
 	{
 		Weapon club = Weapon("crude spiked club");
 		HumanB jim("Jim");
-		// jim.setWeapon(club);
 		jim.attack();
+		jim.setWeapon(club);
 		club.setType("some other type of club");
 		jim.attack();
 	}

@@ -5,60 +5,61 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/09 17:35:28 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/06/09 18:23:35 by phenriq2         ###   ########.fr       */
+/*   Created: 2024/06/10 11:41:00 by phenriq2          #+#    #+#             */
+/*   Updated: 2024/06/10 15:24:12 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fstream>
 #include <iostream>
+#include <iterator>
+#include <string>
 
-bool	ft_error_tratament(std::ifstream &file, const std::string &s1,
-		const std::string &s2)
+bool	ft_error(std::ifstream *filename, std::string s1)
 {
-	if (s1.empty() || s2.empty())
+	if (s1.empty())
 	{
-		std::cerr << "Error: Empty string" << std::endl;
+		std::cout << "Error: empty string" << std::endl;
 		return (true);
 	}
-	if (file.fail())
+	if (!filename->is_open())
 	{
-		std::cerr << "Error: File not found" << std::endl;
+		std::cout << "Error: file not found" << std::endl;
 		return (true);
 	}
 	return (false);
 }
 
-std::string ft_replace(std::string str, std::string old, std::string New, size_t index){
-	std::string newStr = str.substr(0, index);
-	newStr += New;
-	newStr += str.substr(index + old.length());
-	return newStr;
+std::string ft_replace(std::string str, std::string old, std::string New, int index)
+{
+	std::string new_str; 
+	
+	new_str = str.substr(0, index);
+	new_str += New;
+	new_str += str.substr(index + old.length());
+	return (new_str);
 }
 
 int	main(int argc, char **argv)
 {
 	if (argc != 4)
 	{
-		std::cerr << "Usage: ./replace <filename> <string_to_replace> <string_to_replace_with>" << std::endl;
+		std::cout << "Error: wrong number of arguments" << std::endl;
 		return (1);
 	}
 	std::string filename = argv[1];
-	std::ifstream file(filename.c_str());
 	std::string s1 = argv[2];
 	std::string s2 = argv[3];
-	if (ft_error_tratament(file, s1, s2))
-	{
-		file.close();
+	std::ifstream file(filename.c_str());
+	if (ft_error(&file, s1))
 		return (1);
-	}
-	std::string fileContent((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>()); // Read file content
-	std::cout << fileContent.find(s1) << std::endl;
-	while (fileContent.find(s1) != std::string::npos)
-		fileContent = ft_replace(fileContent, s1, s2, fileContent.find(s1));
-	filename = filename + ".replace";
-	std::ofstream outputFile(filename.c_str());
-	outputFile << fileContent;
+	std::string content((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+	while (content.find(s1) != std::string::npos)
+		content = ft_replace(content, s1, s2, content.find(s1));
+	filename += ".replace";
+	std::ofstream newfile(filename.c_str());
+	newfile << content;
 	file.close();
+	newfile.close();
 	return (0);
 }

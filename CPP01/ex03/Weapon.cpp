@@ -6,24 +6,20 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 19:01:55 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/06/09 16:28:32 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/06/10 11:09:09 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "Weapon.hpp"
 
-Weapon::Weapon(std::string type)
-{
-	this->_type = type;
-	return ;
-}
+// Default constructor
+Weapon::Weapon(std::string type) : _type(type){}
 
 // Copy constructor
 Weapon::Weapon(const Weapon &other)
 {
 	*this = other;
-	return ;
 }
 
 // Copy assignment overload
@@ -35,17 +31,14 @@ Weapon &Weapon::operator=(const Weapon &rhs)
 }
 
 // Default destructor
-Weapon::~Weapon()
-{
-	return ;
-}
+Weapon::~Weapon(){}
 
 void Weapon::setType(std::string type)
 {
 	this->_type = type;
 }
 
-const std::string &Weapon::getType() const
+std::string const &Weapon::getType() const
 {
 	return (this->_type);
 }

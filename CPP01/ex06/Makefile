@@ -26,8 +26,8 @@ CFLAGS	=	-Wall -Werror -Wextra -std=c++98 -I.
 RM		=	rm -rf
 
 # Dir and file names
-NAME	=	ft_replace
-SRCS	=	main.cpp
+NAME	=	harl
+SRCS	=	main.cpp Harl.cpp
 OBJS	=	$(SRCS:.cpp=.o)
 INC		=	$(wildcard *.hpp)
 
@@ -53,7 +53,6 @@ clean:
 # Removes objects and executables
 fclean: clean
 	$(HIDE)$(RM) $(NAME)
-	$(RM) *.replace
 
 # Removes objects and executables and remakes
 re: fclean all
