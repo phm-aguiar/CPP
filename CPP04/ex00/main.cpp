@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 17:50:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/06/28 18:59:13 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/06/28 19:04:05 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,6 @@ int	main(void)
 	std::cout << "Type: " << x->getType() << std::endl;
 	x->makeSound();
 	std::cout << std::endl;
-
-
-
-	
 	delete a;
 	delete j;
 	delete i;
