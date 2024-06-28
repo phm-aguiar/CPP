@@ -6,35 +6,73 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 15:18:00 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/06/19 08:37:36 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/06/24 13:42:07 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include <iostream>
 
-int main( void ) {
-Fixed a;
-Fixed e;
-Fixed const b( 10 );
-Fixed const c( 42.42f );
-Fixed const d( b );
-a = Fixed( 1234.4321f );
-e = Fixed(45.2f);
-std::cout << "a is " << a << std::endl;
-std::cout << "b is " << b << std::endl;
-std::cout << "c is " << c << std::endl;
-std::cout << "d is " << d << std::endl;
-std::cout << "e is " << e << std::endl;
-std::cout << "a is " << a.toInt() << " as integer" << std::endl;
-std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-std::cout << "d is " << d.toInt() << " as integer" << std::endl;
-std::cout << "e is " << e.toInt() << " as integer" << std::endl;
-std::cout << "a is " << a.toFloat() << " as float" << std::endl;
-std::cout << "b is " << b.toFloat() << " as float" << std::endl;
-std::cout << "c is " << c.toFloat() << " as float" << std::endl;
-std::cout << "d is " << d.toFloat() << " as float" << std::endl;
-std::cout << "e is " << e.toFloat() << " as float" << std::endl;
-return 0;
+void	testOperators(void)
+{
+	if (Fixed(2) > Fixed(1))
+		std::cout << "test greater" << std::endl;
+	if (Fixed(1) < Fixed(2))
+		std::cout << "test lesser" << std::endl;
+	if (Fixed(2) >= Fixed(1))
+		std::cout << "test greater equal" << std::endl;
+	if (Fixed(1) <= Fixed(1))
+		std::cout << "test lesser equal" << std::endl;
+	if (Fixed(2) == Fixed(2))
+		std::cout << "test equal" << std::endl;
+	if (Fixed(2) != Fixed(1))
+		std::cout << "test different" << std::endl;
+}
+
+void	testIncrement(Fixed &a, Fixed const &b)
+{
+	std::cout << "Normal number " << a << std::endl;
+	std::cout << "Pre increment " << ++a << std::endl;
+	std::cout << "After pre increment " << a << std::endl;
+	std::cout << "Post increment " << a++ << std::endl;
+	std::cout << "After post increment " << a << std::endl;
+	std::cout << "b value " << b << std::endl;
+	std::cout << "Max operation " << Fixed::max(a, b) << std::endl;
+	std::cout << "Min operation " << Fixed::min(a, b) << std::endl;
+}
+
+void	testArithmeticOperators(void)
+{
+	std::cout << "Sum 2 + 3 = " << (Fixed(2) + Fixed(3)) << std::endl;
+	std::cout << "Sub 2 - 3 = " << (Fixed(2) - Fixed(3)) << std::endl;
+	std::cout << "Div 2 / 3 = " << (Fixed(2) / Fixed(3)) << std::endl;
+	std::cout << "Mult 2 * 3 = " << (Fixed(2) * Fixed(3)) << std::endl;
+}
+
+int	main(void)
+{
+	Fixed a;
+	Fixed const b(Fixed(5.05f) * Fixed(2));
+	Fixed a2;
+	Fixed const b2(Fixed(5.05f) * Fixed(2));
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << Fixed::max(a, b) << std::endl;
+	std::cout << std::endl;
+	std::cout << "arithmetic operators" << std::endl;
+	std::cout << std::endl;
+	testArithmeticOperators();
+	std::cout << std::endl;
+	std::cout << "comparison operators" << std::endl;
+	std::cout << std::endl;
+	testOperators();
+	std::cout << std::endl;
+	std::cout << "increment operators" << std::endl;
+	std::cout << std::endl;
+	testIncrement(a, b);
+	return (0);
 }
