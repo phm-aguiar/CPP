@@ -1,6 +1,6 @@
 
 #ifndef FRAGTRAP_HPP_
-# define FRAGRAP_HPP_
+# define FRAGTRAP_HPP_
 # include "ClapTrap.hpp"
 # include "ScavTrap.hpp"
 # include <iostream>

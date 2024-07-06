@@ -5,7 +5,7 @@
 # Special variables
 DEFAULT_GOAL: all
 .DELETE_ON_ERROR: $(NAME)
-.PHONY: all bonus clean fclean re
+.PHONY: all bonus clean fclean re run
 
 # Hide calls
 export VERBOSE	=	TRUE
@@ -26,8 +26,14 @@ CFLAGS	=	-Wall -Werror -Wextra -std=c++98 -I.
 RM		=	rm -rf
 
 # Dir and file names
-NAME	=	FragTrap
-SRCS	=	main.cpp ScavTrap.cpp ClapTrap.cpp FragTrap.cpp
+NAME	=	animal
+SRCS	=	main.cpp \
+			Animal.cpp \
+			Dog.cpp \
+			Cat.cpp \
+			WrongAnimal.cpp \
+			WrongCat.cpp \
+			Brain.cpp
 OBJS	=	$(SRCS:.cpp=.o)
 INC		=	$(wildcard *.hpp)
 
@@ -53,6 +59,9 @@ clean:
 # Removes objects and executables
 fclean: clean
 	$(HIDE)$(RM) $(NAME)
+
+run: all
+	$(HIDE)./$(NAME)
 
 # Removes objects and executables and remakes
 re: fclean all

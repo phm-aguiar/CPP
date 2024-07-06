@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 17:50:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/06/28 19:04:05 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:12:53 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 int	main(void)
 {
 	const Animal *a = new Animal();
-	const Animal *j = new Dog();
-	const Animal *i = new Cat();
-	const WrongAnimal *w = new WrongAnimal();
+	const Animal *b = new Dog();
+	const Animal *c = new Cat();
+	const WrongAnimal *y = new WrongAnimal();
 	const WrongAnimal *x = new WrongCat();
 
 
@@ -28,25 +28,25 @@ int	main(void)
 	a->makeSound();
 	std::cout << std::endl;
 	std::cout << "Test for Dog" << std::endl;
-	std::cout << "Type: " << j->getType() << std::endl;
-	j->makeSound();
+	std::cout << "Type: " << b->getType() << std::endl;
+	b->makeSound();
 	std::cout << std::endl;
 	std::cout << "Test for Cat" << std::endl;
-	std::cout << "Type: " << i->getType() << std::endl;
-	i->makeSound();
+	std::cout << "Type: " << c->getType() << std::endl;
+	c->makeSound();
 	std::cout << std::endl;
 	std::cout << "Test for WrongAnimal" << std::endl;
-	std::cout << "Type: " << w->getType() << std::endl;
-	w->makeSound();
+	std::cout << "Type: " << y->getType() << std::endl;
+	y->makeSound();
 	std::cout << std::endl;
 	std::cout << "Test for WrongCat" << std::endl;
 	std::cout << "Type: " << x->getType() << std::endl;
 	x->makeSound();
 	std::cout << std::endl;
 	delete a;
-	delete j;
-	delete i;
-	delete w;
+	delete b;
+	delete c;
+	delete y;
 	delete x;
 	return (0);
 }

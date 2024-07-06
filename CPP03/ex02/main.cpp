@@ -6,12 +6,13 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:30:41 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/06/24 16:33:37 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:22:26 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int	main(void)
 {
@@ -22,12 +23,14 @@ int	main(void)
 	ClapTrap claptrap2("shaulin matador de porco");
 	ClapTrap claptrap3("junin do pneu");
 	ScavTrap scavtrap("Scavtrap");
+	FragTrap fragtrap("Fragtrap");
 	claptrap.attack("junin do pneu");
 	claptrap2.attack("Claptrap");
 	claptrap3.attack("cleiton");
+	fragtrap.attack("Scavtrap");
 	for (int i = 0; i < 11; i++)
 	{
-		random = std::rand() % 3;
+		random = std::rand() % 4;
 		switch (random)
 		{
 		case 0:
@@ -51,8 +54,12 @@ int	main(void)
 		case 2:
 			scavtrap.guardGate();
 			break ;
+		case 3:
+			fragtrap.highFivesGuys();
+			break ;
 		}
 	}
 	claptrap2.takeDamage(50);
+	fragtrap.takeDamage(50);
 	return (0);
 }
